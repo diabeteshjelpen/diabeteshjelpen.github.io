@@ -1,0 +1,32 @@
+menu:
+  other: "Meny"
+
+learnmore:
+  other: "Les mer"
+
+name:
+  other: "Navn"
+
+email:
+  other: "Epost"
+
+phone:
+  other: "Telefon"
+
+address:
+  other: "Adresse"
+
+yourmessage:
+  other: "Melding"
+
+send:
+  other: "send"
+
+reset:
+  other: "nullstille"
+
+allarticles:
+  other: "alle innlegg"
+
+readmore:
+  other: "Les mer…"

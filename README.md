@@ -1,5 +1,7 @@
 # diabeteshjelpen.github.io
 
+[https://github.com/diabeteshjelpen/diabeteshjelpen.github.io](https://diabeteshjelpen.github.io/)
+
 ```bash
 export SITE_PATH=example-site
 

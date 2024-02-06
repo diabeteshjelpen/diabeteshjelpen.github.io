@@ -1,3 +1,92 @@
-baseURL: https://example.org/
-languageCode: en-us
-title: My New Hugo Site
+baseURL: https://diabeteshjelpen.github.io/
+languageCode: nb-NO
+title: diabeteshjelpen
+theme: spectral
+
+params:
+  fancyTitle: diabeteshjelpen
+  copyright: "Rune Rønneseth"
+  description: "Dårlig bukspyttkjertel?<br /> Vi hjelper deg hvis vi kan"
+  startbuttonText: "Ta kontakt"
+  startbuttonLink: "#cta"
+  body_is_markdown: true
+
+  one:
+    enable: false
+
+  two:
+    enable: true
+    section:
+    -
+      title: 'Hva gjør vi?'
+      img: "img/hand-with-ring-640px.jpg"
+      img_alt: "blurry background: white/grey"
+      body: |
+        Vi kan blant annet bistå med oppsett av kunstig bukspyttkjertel – et halvautomatisk system, som kombinerer insulinpumpe med kontinuerlig glukosemonitorering (CGM).<br />
+        Systemet kan gi bedre blodsukkerkontroll og økt livskvalitet for dere som lever med diabetes. <br />
+        Dette er i dag IKKE en kommersiell løsning, og ALL BRUK er på EGEN RISIKO.
+    -
+      title: 'Hvem er vi?'
+      img: "img/family-of-five-640px.jpg"
+      img_alt: "blurry background: white/grey"
+      body: |
+        Vi er en lett kaotisk familie på fem, hvor eldste barn i familien fikk diagnosen i desember 2015.
+    -
+      title: 'Er det dyrt?'
+      img: "img/rune-on-trampoline.jpg"
+      img_alt: "blurry background: white/grey"
+      body: |
+        Vi hjelper deg helt gratis, så lenge vi klarer å finne en tid og et format som passer.
+        Den eneste utgiften for deg er det som måtte kreves av utstyr (vanligvis en telefon).
+        Ønsket vårt er å gi flest mulig tilgang til de beste verktøyene som finnes for å hanskes med denne 24/7 jobben.
+
+  three:
+    enable: false
+
+  cta:
+    enable: true
+    title: "Kontaktinfo"
+    body: "Rune: (+47) 489 56 604"
+    link:
+    - href: "#"
+      text: "Til toppen"
+      special: true
+    - href: "https://w2.brreg.no/enhet/sok/detalj.jsp?orgnr=924823127"
+      text: "BRREG"
+      special: false
+      
+
+  contact:
+    enable: false
+    title: "Contact"
+    body: "Leave us a message."
+    email: "rune.ronneseth@gmail.com"
+    phone: "+47 489 56 604"
+    address: >
+      Slåttlia 12<br/>
+      8072 Bodø<br/>
+      Norway
+
+  social:
+    github: "diabeteshjelpen"
+    facebook: "100057160776098"
+    linkedin: "runeron"
+
+defaultContentLanguage: 'no'
+
+languages:
+  'no':
+    disabled: false
+    weight: 0
+    languageName: "Norsk"
+    languageCode: "nb-NO"
+  en:
+    disabled: true
+    weight: 10
+    languageName: "English"
+    languageCode: "en-US"
+
+taxonomies:
+  tag: "tags"
+  category: "categories"
+  series: "series"
