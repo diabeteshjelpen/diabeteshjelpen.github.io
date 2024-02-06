@@ -1,0 +1,40 @@
+# https://docs.docker.com/compose/compose-file/compose-file-v3/
+---
+version: '3.8'
+
+services:
+  devcontainer:
+    build:
+      context: .
+      dockerfile: Dockerfile-full
+    stdin_open: true
+    tty: true
+    volumes:
+    - type: bind
+      source: ../..
+      target: /workspace
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.hugo.rule=Host(`localhost`, `127.0.0.1`)"
+    - "traefik.http.routers.hugo.entrypoints=web"
+
+  traefik:
+    image: traefik:latest
+    command:
+    - "--api.insecure=true"
+    - "--providers.docker=true"
+    - "--providers.docker.exposedbydefault=false"
+    - "--entrypoints.web.address=:5080"
+    volumes:
+    - type: bind
+      source: //var/run/docker.sock
+      target: /var/run/docker.sock
+    ports:
+    - published: 8080
+      target: 8080
+      protocol: tcp
+    - published: 5080
+      target: 5080
+      protocol: tcp
+    labels:
+    - "traefik.enable=false"

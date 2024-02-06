@@ -1,0 +1,49 @@
+FROM debian:latest AS base
+
+ENV HUGO_VERSION='0.122.0' \
+    GO_VERSION='1.21.6' \
+    SASS_VERSION='1.70.0' \
+    USER='vscode' \
+    TEMPDIR='/tmp'
+
+EXPOSE 1313
+
+# Install OS packes
+RUN set -ex \
+  && apt-get update \
+  && apt-get -qqy install doas zsh vim.tiny wget git \
+  && apt-get clean
+
+# Install application: Golang
+RUN set -ex \
+  && rm -rf /usr/local/go \
+  && wget -O "${TEMPDIR}/go.tar.gz" "https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz" \
+  && tar -C /usr/local -xzf ${TEMPDIR}/go.tar.gz \
+  && echo 'export PATH=$PATH:/usr/local/go/bin' | tee -a /etc/profile.d/golang.sh \
+  && echo 'export PATH=$PATH:/usr/local/go/bin' | tee -a /etc/zsh/zshenv \
+  && rm -rf ${TEMPDIR}/go.tar.gz
+
+# Install application: Hugo
+RUN set -ex \
+  && wget -O "${TEMPDIR}/hugo.deb" "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb" \
+  && dpkg -i ${TEMPDIR}/hugo.deb \
+  && rm -rf ${TEMPDIR}/hugo.deb
+
+# Install application: Dart-Sass
+RUN set -ex \
+  && wget -O "${TEMPDIR}/sass.tar.gz" "https://github.com/sass/dart-sass/releases/download/${SASS_VERSION}/dart-sass-${SASS_VERSION}-linux-x64.tar.gz" \
+  && tar -C /usr/local -xzf ${TEMPDIR}/sass.tar.gz \
+  && echo 'export PATH=$PATH:/usr/local/dart-sass' | tee -a /etc/profile.d/dart-sass.sh \
+  && echo 'export PATH=$PATH:/usr/local/dart-sass' | tee -a /etc/zsh/zshenv \
+  && rm -rf ${TEMPDIR}/sass.tar.gz
+
+# Create user(s)
+RUN set -ex \
+  && adduser --uid 1000 --disabled-password --shell /usr/bin/zsh --comment "Visual Studio Code Account" ${USER} \
+  && echo "permit nopass ${USER} as root" | tee /etc/doas.conf
+
+USER ${USER}
+WORKDIR /workspace
+
+ENTRYPOINT [ "/usr/bin/env", "zsh" ]
+#ENTRYPOINT [ "/usr/bin/sleep", "infinity" ]

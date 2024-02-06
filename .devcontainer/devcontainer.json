@@ -1,0 +1,8 @@
+{
+  "name": "Hugo Development Container",
+  "dockerComposeFile": "compose.yaml",
+  "service": "devcontainer",
+  "workspaceFolder": "/workspace/${localWorkspaceFolderBasename}",
+  "remoteUser": "vscode",
+  "containerUser": "vscode"
+}
