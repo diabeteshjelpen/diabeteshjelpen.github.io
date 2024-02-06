@@ -1,6 +1,6 @@
 # https://gohugo.io/hosting-and-deployment/hosting-on-github/
-
 # Workflow for building and deploying a Hugo site to GitHub Pages
+---
 name: Deploy Hugo site
 
 on:
@@ -45,7 +45,7 @@ jobs:
       with:
         submodules: recursive
         fetch-depth: 0
-    -
+    - # See https://raw.githubusercontent.com/actions/configure-pages/main/action.yml
       name: Setup Pages
       id: pages
       uses: actions/configure-pages@v4

@@ -15,7 +15,7 @@ services:
       target: /workspace
     labels:
     - "traefik.enable=true"
-    - "traefik.http.routers.hugo.rule=Host(`localhost`, `127.0.0.1`, `192.168.86.37`)"
+    - "traefik.http.routers.hugo.rule=Host(`localhost`, `127.0.0.1`)"
     - "traefik.http.routers.hugo.entrypoints=web"
 
   traefik:
